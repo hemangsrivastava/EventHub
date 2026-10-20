@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub | Campus Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">Event<span>Hub</span></a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#events">Explore Events</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <a href="#events" class="nav-button">Discover Events</a>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <p class="eyebrow">YOUR CAMPUS. YOUR COMMUNITY.</p>
+
+            <h1>Make Your Campus<br>
+                <span>Unforgettable.</span>
+            </h1>
+
+            <p class="hero-text">
+                Discover college festivals, competitions, workshops
+                and experiences worth remembering.
+            </p>
+
+            <a href="#events" class="primary-button">Explore Events &rarr;</a>
+
+            <div class="hero-note">
+                <span class="status-dot"></span>
+                One place for all your campus events
+            </div>
+        </section>
+
+        <section class="events-section" id="events">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">WHAT'S HAPPENING</p>
+                    <h2>Explore Campus Events</h2>
+                </div>
+                <p class="section-description">
+                    Find your next experience.
+                </p>
+            </div>
+
+
+<div class="event-grid">
+    {% for event in events %}
+    <article class="event-card">
+        <div class="event-icon">🎉</div>
+
+        <p class="event-category">{{ event["category"] }}</p>
+
+        <h3>{{ event["name"] }}</h3>
+
+        <p>{{ event["description"] }}</p>
+
+        <p><strong>Date:</strong> {{ event["event_date"] }}</p>
+
+        <p><strong>Venue:</strong> {{ event["venue"] }}</p>
+
+        <p><strong>Organizer:</strong> {{ event["organizer"] }}</p>
+
+        <span class="event-label">Campus Event</span>
+    </article>
+    {% else %}
+    <p>No events available yet.</p>
+    {% endfor %}
+</div>
+
+
+            <p class="demo-note">
+                Sample events for demonstration. Details and dates will be added later.
+            </p>
+        </section>
+
+        <section class="about-section" id="about">
+            <p class="eyebrow">BUILT FOR CAMPUS LIFE</p>
+            <h2>Less searching. More experiencing.</h2>
+            <p>
+                EventHub is a student-focused platform concept for discovering
+                events and bringing campus activities together in one place.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <a href="/" class="logo">Event<span>Hub</span></a>
+        <p>Made for campus life · EventHub Project</p>
+    </footer>
+
+</body>
+</html>
