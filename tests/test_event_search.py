@@ -124,3 +124,43 @@ def test_invalid_category_returns_no_events(monkeypatch, tmp_path):
     assert len(events) == 0
 
 
+def test_empty_category_returns_all_events(monkeypatch, tmp_path):
+    setup_test_database(monkeypatch, tmp_path)
+
+    events, _ = app_module.get_events(category="")
+
+    assert len(events) == 3
+
+
+def test_category_filter_excludes_other_categories(monkeypatch, tmp_path):
+    setup_test_database(monkeypatch, tmp_path)
+
+    events, _ = app_module.get_events(category="Sports")
+
+    assert len(events) == 1
+    assert all(event["category"] == "Sports" for event in events)
+
+
+def test_mismatched_search_and_category(monkeypatch, tmp_path):
+    setup_test_database(monkeypatch, tmp_path)
+
+    events, _ = app_module.get_events(
+        search="Chitrakala",
+        category="Sports"
+    )
+
+    assert len(events) == 0
+
+
+def test_available_categories_are_unique_and_sorted(monkeypatch, tmp_path):
+    setup_test_database(monkeypatch, tmp_path)
+
+    events, categories = app_module.get_events()
+
+    assert categories == [
+        "Art & Culture",
+        "Social Impact",
+        "Sports"
+    ]
+    assert len(categories) == len(set(categories))
+
