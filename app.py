@@ -2,27 +2,62 @@
 import sqlite3
 from contextlib import closing
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from database import initialize_database, DATABASE_PATH
 
 app = Flask(__name__)
 
 
-def get_events():
+def get_events(search="", category=""):
+    query = "SELECT * FROM events WHERE 1=1"
+    parameters = []
+
+    if search:
+        query += """
+            AND (
+                name LIKE ?
+                OR description LIKE ?
+                OR organizer LIKE ?
+            )
+        """
+        search_term = f"%{search}%"
+        parameters.extend([search_term, search_term, search_term])
+
+    if category:
+        query += " AND category = ?"
+        parameters.append(category)
+
+    query += " ORDER BY event_date"
+
     with closing(sqlite3.connect(DATABASE_PATH)) as connection:
         connection.row_factory = sqlite3.Row
-
         events = connection.execute(
-            "SELECT * FROM events ORDER BY event_date"
+            query, parameters
         ).fetchall()
 
-    return events
+        categories = connection.execute(
+            "SELECT DISTINCT category FROM events "
+            "WHERE category IS NOT NULL AND category != '' "
+            "ORDER BY category"
+        ).fetchall()
+
+    return events, [row["category"] for row in categories]
 
 
 @app.route("/")
 def home():
-    events = get_events()
-    return render_template("index.html", events=events)
+    search = request.args.get("search", "").strip()
+    category = request.args.get("category", "").strip()
+
+    events, categories = get_events(search, category)
+
+    return render_template(
+        "index.html",
+        events=events,
+        categories=categories,
+        search=search,
+        selected_category=category
+    )
 
 
 if __name__ == "__main__":

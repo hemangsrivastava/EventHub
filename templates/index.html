@@ -48,39 +48,96 @@
                     <p class="eyebrow">WHAT'S HAPPENING</p>
                     <h2>Explore Campus Events</h2>
                 </div>
+
                 <p class="section-description">
                     Find your next experience.
                 </p>
             </div>
 
+            <!-- Search and category filters -->
+            <form action="/" method="GET" class="filter-form">
 
-<div class="event-grid">
-    {% for event in events %}
-    <article class="event-card">
-        <div class="event-icon">🎉</div>
+                <div class="search-box">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search by event, description or organizer..."
+                        value="{{ search }}"
+                    >
+                    <button type="submit" class="search-button">
+                        Search
+                    </button>
+                </div>
 
-        <p class="event-category">{{ event["category"] }}</p>
+                <div class="filter-options">
+                    <select name="category" aria-label="Filter by category">
+                        <option value="">All Categories</option>
 
-        <h3>{{ event["name"] }}</h3>
+                        {% for category in categories %}
+                        <option
+                            value="{{ category }}"
+                            {% if selected_category == category %}selected{% endif %}
+                        >
+                            {{ category }}
+                        </option>
+                        {% endfor %}
+                    </select>
 
-        <p>{{ event["description"] }}</p>
+                    <button type="submit" class="filter-button">
+                        Apply Filter
+                    </button>
 
-        <p><strong>Date:</strong> {{ event["event_date"] }}</p>
+                    <a href="/" class="clear-button">
+                        Clear Filters
+                    </a>
+                </div>
 
-        <p><strong>Venue:</strong> {{ event["venue"] }}</p>
+            </form>
 
-        <p><strong>Organizer:</strong> {{ event["organizer"] }}</p>
+            <div class="results-heading">
+                <p>
+                    Showing <strong>{{ events|length }}</strong>
+                    event(s)
+                </p>
+            </div>
 
-        <span class="event-label">Campus Event</span>
-    </article>
-    {% else %}
-    <p>No events available yet.</p>
-    {% endfor %}
-</div>
+            <div class="event-grid">
+                {% for event in events %}
+                <article class="event-card">
 
+                    <div class="event-icon">&#127881;</div>
+
+                    <p class="event-category">
+                        {{ event["category"] }}
+                    </p>
+
+                    <h3>{{ event["name"] }}</h3>
+
+                    <p>{{ event["description"] }}</p>
+
+                    <p><strong>Date:</strong> {{ event["event_date"] }}</p>
+
+                    <p><strong>Venue:</strong> {{ event["venue"] }}</p>
+
+                    <p><strong>Organizer:</strong> {{ event["organizer"] }}</p>
+
+                    <span class="event-label">Campus Event</span>
+
+                </article>
+
+                {% else %}
+                <div class="no-events">
+                    <h3>No events found</h3>
+                    <p>
+                        Try another search term or select a different category.
+                    </p>
+                    <a href="/" class="primary-button">View All Events</a>
+                </div>
+                {% endfor %}
+            </div>
 
             <p class="demo-note">
-                Sample events for demonstration. Details and dates will be added later.
+                Discover campus activities and find your next experience.
             </p>
         </section>
 
@@ -88,7 +145,7 @@
             <p class="eyebrow">BUILT FOR CAMPUS LIFE</p>
             <h2>Less searching. More experiencing.</h2>
             <p>
-                EventHub is a student-focused platform concept for discovering
+                EventHub is a student-focused platform for discovering
                 events and bringing campus activities together in one place.
             </p>
         </section>
@@ -96,7 +153,7 @@
 
     <footer>
         <a href="/" class="logo">Event<span>Hub</span></a>
-        <p>Made for campus life · EventHub Project</p>
+        <p>Made for campus life &middot; EventHub Project</p>
     </footer>
 
 </body>

@@ -283,3 +283,120 @@ footer p {
         align-items: start;
     }
 }
+
+/* Search and filter controls */
+
+.filter-form {
+    margin-bottom: 24px;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.search-box {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.search-box input,
+.filter-options select {
+    min-width: 0;
+    padding: 13px 15px;
+    background: var(--background);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+}
+
+.search-box input {
+    flex: 1;
+}
+
+.search-box input::placeholder {
+    color: var(--muted);
+}
+
+.search-box input:focus,
+.filter-options select:focus {
+    outline: 2px solid var(--gold);
+    border-color: var(--gold);
+}
+
+.search-button,
+.filter-button {
+    padding: 12px 20px;
+    background: var(--gold);
+    color: #151827;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.filter-options {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-options select {
+    flex: 1;
+}
+
+.clear-button {
+    color: var(--muted);
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.clear-button:hover {
+    color: var(--gold);
+}
+
+.results-heading {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.results-heading strong {
+    color: var(--gold);
+}
+
+.no-events {
+    grid-column: 1 / -1;
+    padding: 45px 20px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.no-events p {
+    color: var(--muted);
+    margin: 12px 0 24px;
+}
+
+@media (max-width: 520px) {
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-button,
+    .filter-button {
+        width: 100%;
+    }
+
+    .filter-options {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .filter-options select {
+        width: 100%;
+    }
+}
