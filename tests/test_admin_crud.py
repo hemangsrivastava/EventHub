@@ -122,3 +122,44 @@ def test_admin_can_edit_event(admin_crud_client):
     assert event[0] == "Updated DevOps Workshop"
     assert event[1] == "Updated event description"
     assert event[2] == "New Computer Lab"
+
+def test_admin_can_delete_event(admin_crud_client):
+    client, test_db = admin_crud_client
+
+    # Create an event in the temporary database.
+    with sqlite3.connect(test_db) as connection:
+        cursor = connection.execute(
+            """
+            INSERT INTO events
+                (name, description, event_date,
+                 venue, organizer, category)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (
+                "Event To Delete",
+                "Temporary event for deletion test",
+                "",
+                "Computer Lab",
+                "DevOps Club",
+                "Technical",
+            ),
+        )
+        event_id = cursor.lastrowid
+
+    # Delete the event using the admin route.
+    response = client.post(
+        f"/admin/delete/{event_id}",
+        follow_redirects=False,
+    )
+
+    assert response.status_code == 302
+    assert response.headers["Location"].endswith("/admin")
+
+    # Verify that the event no longer exists.
+    with sqlite3.connect(test_db) as connection:
+        event = connection.execute(
+            "SELECT id FROM events WHERE id = ?",
+            (event_id,),
+        ).fetchone()
+
+    assert event is None
