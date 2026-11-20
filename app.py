@@ -13,11 +13,10 @@ from database import initialize_database, DATABASE_PATH
 
 app = Flask(__name__)
 
-app.secret_key = os.environ.get("SECRET_KEY", "eventhub-development-key")
+app.secret_key = os.environ.get("SECRET_KEY")
 
-ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "eventhub123")
-
+ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 
 # =========================================
 # DATABASE FUNCTIONS
@@ -279,6 +278,7 @@ def delete_event(event_id):
 # RUN APPLICATION
 # =========================================
 
+initialize_database()
+
 if __name__ == "__main__":
-    initialize_database()
-    app.run(debug=True)
+    app.run(debug=False)
