@@ -31,6 +31,7 @@ def get_events(search="", category=""):
 
     with closing(sqlite3.connect(DATABASE_PATH)) as connection:
         connection.row_factory = sqlite3.Row
+
         events = connection.execute(
             query, parameters
         ).fetchall()
@@ -42,6 +43,18 @@ def get_events(search="", category=""):
         ).fetchall()
 
     return events, [row["category"] for row in categories]
+
+
+def get_event_by_id(event_id):
+    with closing(sqlite3.connect(DATABASE_PATH)) as connection:
+        connection.row_factory = sqlite3.Row
+
+        event = connection.execute(
+            "SELECT * FROM events WHERE id = ?",
+            (event_id,)
+        ).fetchone()
+
+    return event
 
 
 @app.route("/")
@@ -58,6 +71,16 @@ def home():
         search=search,
         selected_category=category
     )
+
+
+@app.route("/event/<int:event_id>")
+def event_detail(event_id):
+    event = get_event_by_id(event_id)
+
+    if event is None:
+        return render_template("404.html"), 404
+
+    return render_template("event_detail.html", event=event)
 
 
 if __name__ == "__main__":

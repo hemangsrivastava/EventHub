@@ -1,4 +1,8 @@
 
+/* =========================================
+   EVENTHUB - GLOBAL STYLES
+========================================= */
+
 :root {
     --background: #0b1020;
     --surface: #141c30;
@@ -31,6 +35,11 @@ a {
     text-decoration: none;
 }
 
+
+/* =========================================
+   NAVBAR
+========================================= */
+
 .navbar {
     min-height: 76px;
     padding: 18px 8%;
@@ -46,6 +55,7 @@ a {
     font-size: 25px;
     font-weight: 800;
     letter-spacing: -1px;
+    white-space: nowrap;
 }
 
 .logo span,
@@ -61,6 +71,7 @@ nav {
 nav a {
     color: var(--muted);
     font-size: 14px;
+    transition: color 0.2s;
 }
 
 nav a:hover {
@@ -76,7 +87,19 @@ nav a:hover {
     border-radius: 8px;
     font-weight: 700;
     font-size: 14px;
+    transition: transform 0.2s, background 0.2s;
 }
+
+.nav-button:hover,
+.primary-button:hover {
+    background: #ffd98b;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   HOMEPAGE HERO
+========================================= */
 
 .hero {
     padding: 100px 8% 90px;
@@ -125,6 +148,11 @@ nav a:hover {
     border-radius: 50%;
     background: #65d6a2;
 }
+
+
+/* =========================================
+   EVENTS SECTION
+========================================= */
 
 .events-section {
     padding: 75px 8%;
@@ -194,8 +222,8 @@ nav a:hover {
 .event-card > p:not(.event-category) {
     color: var(--muted);
     font-size: 14px;
-    min-height: 68px;
-    margin-bottom: 18px;
+    min-height: 40px;
+    margin-bottom: 12px;
 }
 
 .event-label {
@@ -213,78 +241,10 @@ nav a:hover {
     margin-top: 20px;
 }
 
-.about-section {
-    padding: 75px 8%;
-    text-align: center;
-}
 
-.about-section .eyebrow {
-    margin-bottom: 12px;
-}
-
-.about-section > p:last-child {
-    color: var(--muted);
-    max-width: 650px;
-    margin: 18px auto 0;
-}
-
-footer {
-    padding: 25px 8%;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-footer p {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-@media (max-width: 800px) {
-    .navbar {
-        flex-wrap: wrap;
-    }
-
-    nav {
-        order: 3;
-        width: 100%;
-        justify-content: center;
-        gap: 18px;
-    }
-
-    .event-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-heading {
-        align-items: start;
-        flex-direction: column;
-    }
-
-    .hero {
-        padding-top: 70px;
-    }
-}
-
-@media (max-width: 420px) {
-    .nav-button {
-        padding: 9px 11px;
-        font-size: 12px;
-    }
-
-    .hero h1 {
-        letter-spacing: -1px;
-    }
-
-    footer {
-        flex-direction: column;
-        align-items: start;
-    }
-}
-
-/* Search and filter controls */
+/* =========================================
+   SEARCH AND CATEGORY FILTERS
+========================================= */
 
 .filter-form {
     margin-bottom: 24px;
@@ -336,6 +296,11 @@ footer p {
     cursor: pointer;
 }
 
+.search-button:hover,
+.filter-button:hover {
+    background: #ffd98b;
+}
+
 .filter-options {
     display: flex;
     align-items: center;
@@ -381,7 +346,278 @@ footer p {
     margin: 12px 0 24px;
 }
 
+
+/* =========================================
+   EVENT DETAILS BUTTON
+========================================= */
+
+.details-button {
+    display: inline-block;
+    margin: 12px 0;
+    padding: 9px 14px;
+    color: var(--background);
+    background: var(--gold);
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.details-button:hover {
+    background: #ffd98b;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   INDIVIDUAL EVENT DETAIL PAGE
+========================================= */
+
+.detail-section {
+    min-height: 65vh;
+    padding: 55px 8% 75px;
+    background:
+        radial-gradient(ellipse at 50% 0%, #1b2942 0%, transparent 55%),
+        var(--background);
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--muted);
+    margin-bottom: 25px;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--gold);
+}
+
+.detail-card {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 45px;
+    background: linear-gradient(
+        145deg,
+        var(--surface),
+        #101a2e
+    );
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.detail-card .event-category {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    background: rgba(245, 198, 107, 0.09);
+    border: 1px solid rgba(245, 198, 107, 0.2);
+    border-radius: 20px;
+}
+
+.detail-card h1 {
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    margin: 8px 0 16px;
+}
+
+.detail-description {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 650px;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.detail-information {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.detail-information div {
+    min-width: 0;
+    padding: 20px;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.detail-information div:hover {
+    border-color: #665537;
+    transform: translateY(-2px);
+}
+
+.detail-information span,
+.detail-information strong {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.detail-information span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+}
+
+.detail-information strong {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.detail-card .event-label {
+    margin-top: 2px;
+    padding: 7px 14px;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   404 PAGE
+========================================= */
+
+.not-found {
+    text-align: center;
+}
+
+.not-found h1 {
+    font-size: 42px;
+}
+
+.not-found p {
+    color: var(--muted);
+    margin: 15px 0 25px;
+}
+
+
+/* =========================================
+   ABOUT SECTION
+========================================= */
+
+.about-section {
+    padding: 75px 8%;
+    text-align: center;
+}
+
+.about-section .eyebrow {
+    margin-bottom: 12px;
+}
+
+.about-section > p:last-child {
+    color: var(--muted);
+    max-width: 650px;
+    margin: 18px auto 0;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    padding: 25px 8%;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+footer p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN - TABLETS
+========================================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .event-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .section-heading {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .hero {
+        padding-top: 70px;
+    }
+
+    .detail-section {
+        padding: 40px 5% 60px;
+    }
+
+    .detail-card {
+        padding: 32px;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN - MOBILE
+========================================= */
+
 @media (max-width: 520px) {
+
+    .navbar {
+        padding: 16px 5%;
+    }
+
+    .nav-button {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 65px 6%;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .events-section,
+    .about-section {
+        padding: 55px 6%;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
     .search-box {
         flex-direction: column;
     }
@@ -398,5 +634,38 @@ footer p {
 
     .filter-options select {
         width: 100%;
+    }
+
+    .detail-section {
+        padding: 30px 5% 45px;
+    }
+
+    .detail-card {
+        padding: 25px 20px;
+        border-radius: 14px;
+    }
+
+    .detail-card h1 {
+        font-size: 34px;
+    }
+
+    .detail-description {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .detail-information {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .detail-information div {
+        padding: 16px;
+    }
+
+    footer {
+        padding: 25px 6%;
+        flex-direction: column;
+        align-items: start;
     }
 }

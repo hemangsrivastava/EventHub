@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event["name"] }} | EventHub</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">Event<span>Hub</span></a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#events">Explore Events</a>
+            <a href="/#about">About</a>
+        </nav>
+
+        <a href="/#events" class="nav-button">All Events</a>
+    </header>
+
+    <main class="detail-section">
+
+        <a href="/#events" class="back-link">
+            &larr; Back to Events
+        </a>
+
+        <article class="detail-card">
+
+            <p class="event-category">
+                {{ event["category"] }}
+            </p>
+
+            <h1>{{ event["name"] }}</h1>
+
+            <p class="detail-description">
+                {{ event["description"] }}
+            </p>
+
+            <div class="detail-information">
+
+                <div>
+                    <span>Date</span>
+                    <strong>
+                        {{ event["event_date"] or "To be announced" }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Venue</span>
+                    <strong>
+                        {{ event["venue"] or "To be announced" }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Organizer</span>
+                    <strong>
+                        {{ event["organizer"] or "To be announced" }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Category</span>
+                    <strong>
+                        {{ event["category"] or "General" }}
+                    </strong>
+                </div>
+
+            </div>
+
+            <span class="event-label">Campus Event</span>
+
+        </article>
+
+    </main>
+
+    <footer>
+        <a href="/" class="logo">Event<span>Hub</span></a>
+        <p>Made for campus life &middot; EventHub Project</p>
+    </footer>
+
+</body>
+</html>

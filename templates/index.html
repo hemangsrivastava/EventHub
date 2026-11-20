@@ -43,6 +43,7 @@
         </section>
 
         <section class="events-section" id="events">
+
             <div class="section-heading">
                 <div>
                     <p class="eyebrow">WHAT'S HAPPENING</p>
@@ -54,16 +55,16 @@
                 </p>
             </div>
 
-            <!-- Search and category filters -->
             <form action="/" method="GET" class="filter-form">
 
                 <div class="search-box">
                     <input
                         type="text"
                         name="search"
-                        placeholder="Search by event, description or organizer..."
+                        placeholder="Search events, descriptions or organizers..."
                         value="{{ search }}"
                     >
+
                     <button type="submit" class="search-button">
                         Search
                     </button>
@@ -87,21 +88,17 @@
                         Apply Filter
                     </button>
 
-                    <a href="/" class="clear-button">
-                        Clear Filters
-                    </a>
+                    <a href="/" class="clear-button">Clear Filters</a>
                 </div>
 
             </form>
 
             <div class="results-heading">
-                <p>
-                    Showing <strong>{{ events|length }}</strong>
-                    event(s)
-                </p>
+                Showing <strong>{{ events|length }}</strong> event(s)
             </div>
 
             <div class="event-grid">
+
                 {% for event in events %}
                 <article class="event-card">
 
@@ -121,6 +118,13 @@
 
                     <p><strong>Organizer:</strong> {{ event["organizer"] }}</p>
 
+                    <a
+                        href="{{ url_for('event_detail', event_id=event['id']) }}"
+                        class="details-button"
+                    >
+                        View Details &rarr;
+                    </a>
+
                     <span class="event-label">Campus Event</span>
 
                 </article>
@@ -128,22 +132,28 @@
                 {% else %}
                 <div class="no-events">
                     <h3>No events found</h3>
+
                     <p>
                         Try another search term or select a different category.
                     </p>
+
                     <a href="/" class="primary-button">View All Events</a>
                 </div>
                 {% endfor %}
+
             </div>
 
             <p class="demo-note">
                 Discover campus activities and find your next experience.
             </p>
+
         </section>
 
         <section class="about-section" id="about">
             <p class="eyebrow">BUILT FOR CAMPUS LIFE</p>
+
             <h2>Less searching. More experiencing.</h2>
+
             <p>
                 EventHub is a student-focused platform for discovering
                 events and bringing campus activities together in one place.
