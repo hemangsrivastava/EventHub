@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | EventHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <main class="admin-login-section">
+        <form class="admin-login-card" method="POST">
+
+            <a href="/" class="logo">Event<span>Hub</span></a>
+
+            <p class="eyebrow">ADMIN PANEL</p>
+            <h1>Welcome Back</h1>
+            <p class="admin-subtitle">Log in to manage campus events.</p>
+
+            {% if error %}
+                <p class="admin-error">{{ error }}</p>
+            {% endif %}
+
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+            <button type="submit" class="admin-submit">
+                Login
+            </button>
+
+            <a href="/" class="admin-back-link">← Back to homepage</a>
+
+        </form>
+    </main>
+
+</body>
+</html>

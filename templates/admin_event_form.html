@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }} | EventHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">Event<span>Hub</span></a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/admin">Dashboard</a>
+        </nav>
+
+        <a href="{{ url_for('admin_logout') }}" class="nav-button">Logout</a>
+    </header>
+
+    <main class="admin-form-section">
+
+        <a href="{{ url_for('admin_dashboard') }}" class="back-link">
+            &larr; Back to Dashboard
+        </a>
+
+        <form class="admin-event-form" method="POST">
+
+            <p class="eyebrow">EVENT MANAGEMENT</p>
+            <h1>{{ page_title }}</h1>
+            <p class="admin-subtitle">
+                Enter the details of the campus event below.
+            </p>
+
+            {% if error %}
+                <p class="admin-error">{{ error }}</p>
+            {% endif %}
+
+            <label for="name">Event Name *</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ event['name'] if event else '' }}"
+                required
+            >
+
+            <label for="description">Description *</label>
+            <textarea
+                id="description"
+                name="description"
+                rows="4"
+                required
+            >{{ event['description'] if event else '' }}</textarea>
+
+            <label for="event_date">Event Date</label>
+            <input
+                type="date"
+                id="event_date"
+                name="event_date"
+                value="{{ event['event_date'] if event else '' }}"
+            >
+
+            <label for="venue">Venue</label>
+            <input
+                type="text"
+                id="venue"
+                name="venue"
+                value="{{ event['venue'] if event else '' }}"
+            >
+
+            <label for="organizer">Organizer</label>
+            <input
+                type="text"
+                id="organizer"
+                name="organizer"
+                value="{{ event['organizer'] if event else '' }}"
+            >
+
+            <label for="category">Category</label>
+            <input
+                type="text"
+                id="category"
+                name="category"
+                value="{{ event['category'] if event else '' }}"
+                placeholder="e.g. Sports, Technology, Art & Culture"
+            >
+
+            <button type="submit" class="admin-submit">
+                {{ "Save Changes" if page_title == "Edit Event" else "Add Event" }}
+            </button>
+
+        </form>
+
+    </main>
+
+    <footer>
+        <a href="/" class="logo">Event<span>Hub</span></a>
+        <p>EventHub Admin Panel</p>
+    </footer>
+
+</body>
+</html>
