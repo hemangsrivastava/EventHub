@@ -669,3 +669,344 @@ footer p {
         align-items: start;
     }
 }
+
+/* =========================================
+   ADMIN LOGIN
+========================================= */
+
+.admin-login-section {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background:
+        radial-gradient(ellipse at center, #1b2942 0%, transparent 65%),
+        var(--background);
+}
+
+.admin-login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.admin-login-card > .logo {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.admin-login-card .eyebrow {
+    margin-bottom: 8px;
+}
+
+.admin-login-card h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.admin-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.admin-login-card label {
+    display: block;
+    margin: 15px 0 7px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-login-card input {
+    width: 100%;
+    padding: 13px;
+    background: var(--background);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+}
+
+.admin-login-card input:focus {
+    outline: 2px solid var(--gold);
+    border-color: var(--gold);
+}
+
+.admin-submit {
+    width: 100%;
+    margin-top: 24px;
+    padding: 13px;
+    background: var(--gold);
+    color: #151827;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-submit:hover {
+    background: #ffd98b;
+}
+
+.admin-error {
+    padding: 10px;
+    color: #ffaaaa;
+    background: #3a1c2a;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.admin-back-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.admin-back-link:hover {
+    color: var(--gold);
+}
+
+/* =========================================
+   ADMIN DASHBOARD
+========================================= */
+
+.admin-dashboard {
+    min-height: 75vh;
+    padding: 60px 8%;
+    background: var(--background);
+}
+
+.admin-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.admin-heading h1 {
+    font-size: clamp(30px, 4vw, 42px);
+    margin-bottom: 5px;
+}
+
+.admin-heading p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.admin-add-button {
+    display: inline-block;
+    padding: 13px 20px;
+    background: var(--gold);
+    color: #151827;
+    border-radius: 8px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.admin-stats {
+    margin-bottom: 35px;
+}
+
+.admin-stat-card {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 190px;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.admin-stat-card span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.admin-stat-card strong {
+    color: var(--gold);
+    font-size: 30px;
+}
+
+.admin-list-heading {
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.admin-event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.admin-event-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.admin-event-info h3 {
+    font-size: 19px;
+    margin: 5px 0;
+}
+
+.admin-event-info > p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.admin-event-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-event-actions form {
+    margin: 0;
+}
+
+.admin-edit-button,
+.admin-delete-button {
+    display: inline-block;
+    padding: 9px 15px;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-edit-button {
+    background: var(--gold);
+    color: #151827;
+}
+
+.admin-delete-button {
+    background: #542635;
+    color: #ffb6c2;
+}
+
+.admin-edit-button:hover {
+    background: #ffd98b;
+}
+
+.admin-delete-button:hover {
+    background: #713044;
+}
+
+@media (max-width: 600px) {
+    .admin-dashboard {
+        padding: 40px 5%;
+    }
+
+    .admin-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-event-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-event-actions {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   ADMIN EVENT FORM
+========================================= */
+
+.admin-form-section {
+    min-height: 75vh;
+    padding: 45px 8% 70px;
+    background:
+        radial-gradient(ellipse at 50% 0%, #1b2942 0%, transparent 55%),
+        var(--background);
+}
+
+.admin-event-form {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 38px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.admin-event-form h1 {
+    font-size: 34px;
+    margin-bottom: 5px;
+}
+
+.admin-event-form .admin-subtitle {
+    margin-bottom: 25px;
+}
+
+.admin-event-form label {
+    display: block;
+    margin: 16px 0 7px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-event-form input,
+.admin-event-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--background);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+}
+
+.admin-event-form textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.admin-event-form input:focus,
+.admin-event-form textarea:focus {
+    outline: 2px solid var(--gold);
+    border-color: var(--gold);
+}
+
+.admin-event-form input[type="date"] {
+    color-scheme: dark;
+}
+
+.admin-event-form .admin-submit {
+    margin-top: 25px;
+}
+
+@media (max-width: 520px) {
+    .admin-form-section {
+        padding: 30px 5% 45px;
+    }
+
+    .admin-event-form {
+        padding: 24px 18px;
+    }
+
+    .admin-event-form h1 {
+        font-size: 28px;
+    }
+}
