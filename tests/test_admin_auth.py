@@ -64,3 +64,17 @@ def test_admin_login_rejects_invalid_credentials(
 
     with admin_client.session_transaction() as session:
         assert session.get("admin_logged_in") is not True
+
+def test_admin_dashboard_requires_login(admin_client):
+    response = admin_client.get(
+        "/admin",
+        follow_redirects=False
+    )
+
+    assert response.status_code == 302
+    assert response.headers["Location"].endswith(
+        "/admin/login"
+    )
+
+    with admin_client.session_transaction() as session:
+        assert session.get("admin_logged_in") is not True
