@@ -65,3 +65,60 @@ def test_admin_can_create_event(admin_crud_client):
     assert event[0] == "DevOps Workshop"
     assert event[1] == "A workshop about CI/CD."
     assert event[2] == "Computer Lab"
+
+def test_admin_can_edit_event(admin_crud_client):
+    client, test_db = admin_crud_client
+
+    # Insert an existing event into the test database.
+    with sqlite3.connect(test_db) as connection:
+        cursor = connection.execute(
+            """
+            INSERT INTO events
+                (name, description, event_date,
+                 venue, organizer, category)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (
+                "Original Event",
+                "Original description",
+                "",
+                "Old Venue",
+                "DevOps Club",
+                "Technical",
+            ),
+        )
+        event_id = cursor.lastrowid
+
+    # Admin edits the existing event.
+    response = client.post(
+        f"/admin/edit/{event_id}",
+        data={
+            "name": "Updated DevOps Workshop",
+            "description": "Updated event description",
+            "event_date": "",
+            "venue": "New Computer Lab",
+            "organizer": "DevOps Club",
+            "category": "Technical",
+        },
+        follow_redirects=False,
+    )
+
+    # Verify successful redirect.
+    assert response.status_code == 302
+    assert response.headers["Location"].endswith("/admin")
+
+    # Verify updated data in SQLite.
+    with sqlite3.connect(test_db) as connection:
+        event = connection.execute(
+            """
+            SELECT name, description, venue
+            FROM events
+            WHERE id = ?
+            """,
+            (event_id,),
+        ).fetchone()
+
+    assert event is not None
+    assert event[0] == "Updated DevOps Workshop"
+    assert event[1] == "Updated event description"
+    assert event[2] == "New Computer Lab"
