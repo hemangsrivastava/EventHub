@@ -41,3 +41,14 @@ def test_repeated_initialization_does_not_duplicate_events(monkeypatch, tmp_path
         ).fetchone()[0]
 
     assert count == 3
+
+
+def test_database_fixture_initialization(test_db):
+    import sqlite3
+
+    with sqlite3.connect(test_db) as connection:
+        count = connection.execute(
+            "SELECT COUNT(*) FROM events"
+        ).fetchone()[0]
+
+    assert count == 3
