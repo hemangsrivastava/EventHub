@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub | Campus Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">Event<span>Hub</span></a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#events">Explore Events</a>
+            <a href="#about">About</a>
+            <a href="{{ url_for('admin_login') }}">Admin Login</a>
+        </nav>
+
+        <a href="#events" class="nav-button">Discover Events</a>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <p class="eyebrow">YOUR CAMPUS. YOUR COMMUNITY.</p>
+
+            <h1>
+                Make Your Campus<br>
+                <span>Unforgettable.</span>
+            </h1>
+
+            <p class="hero-text">
+                Discover college festivals, competitions, workshops
+                and experiences worth remembering.
+            </p>
+
+            <a href="#events" class="primary-button">
+                Explore Events &rarr;
+            </a>
+
+            <div class="hero-note">
+                <span class="status-dot"></span>
+                One place for all your campus events
+            </div>
+        </section>
+
+
+        <!-- EVENTS SECTION -->
+        <section class="events-section" id="events">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">WHAT'S HAPPENING</p>
+                    <h2>Explore Campus Events</h2>
+                </div>
+
+                <p class="section-description">
+                    Find your next experience.
+                </p>
+            </div>
+
+
+            <!-- SEARCH AND FILTERS -->
+            <form action="/" method="GET" class="filter-form">
+
+                <div class="search-box">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search events, descriptions or organizers..."
+                        value="{{ search }}"
+                    >
+
+                    <button type="submit" class="search-button">
+                        Search
+                    </button>
+                </div>
+
+                <div class="filter-options">
+
+                    <select name="category" aria-label="Filter by category">
+                        <option value="">All Categories</option>
+
+                        {% for category in categories %}
+                        <option
+                            value="{{ category }}"
+                            {% if selected_category == category %}selected{% endif %}
+                        >
+                            {{ category }}
+                        </option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit" class="filter-button">
+                        Apply Filter
+                    </button>
+
+                    <a href="/" class="clear-button">
+                        Clear Filters
+                    </a>
+
+                </div>
+
+            </form>
+
+
+            <!-- RESULTS COUNT -->
+            <div class="results-heading">
+                Showing <strong>{{ events|length }}</strong> event(s)
+            </div>
+
+
+            <!-- EVENT CARDS -->
+            <div class="event-grid">
+
+                {% for event in events %}
+
+                <article class="event-card">
+
+                    <div class="event-icon">&#127881;</div>
+
+                    <p class="event-category">
+                        {{ event["category"] or "General" }}
+                    </p>
+
+                    <h3>{{ event["name"] }}</h3>
+
+                    <p>{{ event["description"] }}</p>
+
+                    <p>
+                        <strong>Date:</strong>
+                        {{ event["event_date"] or "To be announced" }}
+                    </p>
+
+                    <p>
+                        <strong>Venue:</strong>
+                        {{ event["venue"] or "To be announced" }}
+                    </p>
+
+                    <p>
+                        <strong>Organizer:</strong>
+                        {{ event["organizer"] or "To be announced" }}
+                    </p>
+
+                    <a
+                        href="{{ url_for('event_detail', event_id=event['id']) }}"
+                        class="details-button"
+                    >
+                        View Details &rarr;
+                    </a>
+
+                    <span class="event-label">
+                        Campus Event
+                    </span>
+
+                </article>
+
+                {% else %}
+
+                <div class="no-events">
+                    <h3>No events found</h3>
+
+                    <p>
+                        Try another search term or select a different category.
+                    </p>
+
+                    <a href="/" class="primary-button">
+                        View All Events
+                    </a>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <p class="demo-note">
+                Discover campus activities and find your next experience.
+            </p>
+
+        </section>
+
+
+        <!-- ABOUT SECTION -->
+        <section class="about-section" id="about">
+
+            <p class="eyebrow">BUILT FOR CAMPUS LIFE</p>
+
+            <h2>Less searching. More experiencing.</h2>
+
+            <p>
+                EventHub is a student-focused platform for discovering
+                events and bringing campus activities together in one place.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <a href="/" class="logo">Event<span>Hub</span></a>
+        <p>Made for campus life &middot; EventHub Project</p>
+    </footer>
+
+</body>
+</html>

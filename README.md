@@ -1,56 +1,104 @@
-\# EventHub
+# EventHub
 
+EventHub is a college event management system designed to help students discover college events and access information about upcoming activities.
 
+The project is being developed using Python and Flask, with SQLite for database management and HTML/CSS for the frontend.
 
-EventHub is a college event management system designed to help students discover and manage college events.
+## Technology Stack
 
+- Python
+- Flask
+- SQLite
+- HTML and CSS
+- Git and GitHub
+- Pytest
+- GitHub Actions
 
+## Implemented Features
 
-\## Technology Stack
+- Display college events on the homepage.
+- Retrieve event information from an SQLite database.
+- Display event details such as name, description, date, venue, organizer and category.
+- Automated homepage testing using Pytest.
+- Continuous Integration workflow using GitHub Actions.
 
+## Planned Features
 
+- Browse events by category.
+- Search for events.
+- Manage event information.
+- Improve event details and user experience.
 
-\- Python
+## Project Structure
 
-\- Flask
+```text
+EventHub/
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+├── tests/
+│   └── test_app.py
+├── static/
+│   └── style.css
+├── templates/
+│   └── index.html
+├── app.py
+├── database.py
+├── eventhub.db
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
 
-\- SQLite
+## Setup and Installation
 
-\- HTML and CSS
+1. Clone the repository:
 
-\- Git and GitHub
+   `git clone https://github.com/hemangsrivastava/EventHub.git`
 
+2. Navigate to the project directory:
 
+   `cd EventHub`
 
-\## Planned Features
+3. Create a virtual environment:
 
+   `python -m venv .venv`
 
+4. Activate the virtual environment on Windows:
 
-\- View college events
+   `.venv\Scripts\activate`
 
-\- Browse events by category
+5. Install dependencies:
 
-\- Search for events
+   `pip install -r requirements.txt`
 
-\- Manage event information
+6. Initialize the database:
 
+   `python database.py`
 
+7. Run the application:
 
-\## Project Status
+   `python app.py`
 
+8. Open the application at:
 
+   `http://127.0.0.1:5000`
 
-The project is under development. Features will be updated as they are implemented and tested.
+## Testing
 
+Run the automated tests using:
 
+`python -m pytest -v`
 
-\## Team
+The project uses GitHub Actions to automatically execute tests when changes are pushed to the main or develop branches, or when pull requests target these branches.
 
+## Project Status
 
+EventHub is currently under development. New features are being added and tested incrementally.
 
-\- Saransh Sharma: Development
+## Team
 
-\- Hemang Srivastava: Source Code Management (SCM)
+- **Hemang Srivastava:** Project Development, Source Code Management (SCM), GitHub Management and Integration.
+- **Dhruv Singh Solanki:** Testing, Test Case Development and Bug Identification.
 
-\- Dhruv Singh Solanki: Testing and CI/CD
-
+Both team members contribute to maintaining the project workflow and quality.
